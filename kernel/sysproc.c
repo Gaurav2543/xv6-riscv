@@ -77,6 +77,12 @@ sys_kill(void)
   return kill(pid);
 }
 
+// add the system call getreadcount to xv6
+uint64 sys_getreadcount(void)
+{
+  return getreadcount();
+}
+
 // return how many clock tick interrupts have occurred
 // since start.
 uint64
