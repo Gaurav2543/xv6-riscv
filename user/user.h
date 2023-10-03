@@ -22,6 +22,9 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int getreadcount(void); // add the system call getreadcount to xv6
+int sigalarm(int ticks, void (*handler)()); // add the system call sigalarm to xv6
+int sigreturn(void); // add the system call sigreturn to xv6
 
 // ulib.c
 int stat(const char*, struct stat*);

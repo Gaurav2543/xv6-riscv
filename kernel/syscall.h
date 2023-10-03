@@ -20,5 +20,7 @@
 #define SYS_link   19
 #define SYS_mkdir  20
 #define SYS_close  21
-# define SYS_getreadcount 22   // for getreadcount
+#define SYS_getreadcount 22   // for getreadcount
+#define SYS_sigalarm   23  // for sigalarm
+#define SYS_sigreturn  24  // for sigreturn
 

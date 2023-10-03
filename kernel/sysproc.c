@@ -83,6 +83,26 @@ uint64 sys_getreadcount(void)
   return getreadcount();
 }
 
+// add the system call sigalarm to xv6
+uint64 sys_sigalarm(void)
+{
+  int ticks;
+  void (*handler)();
+  argint(0, &ticks);
+  argaddr(1, (uint64*)&handler);
+
+  // myproc()->alarmticks = ticks;
+  // myproc()->alarmhandler = handler;
+  // myproc()->alarm_on = 1;
+  return sigalarm(ticks, handler);
+}
+
+// add the system call sigreturn to xv6
+uint sys_sigreturn(void)
+{
+  return sigreturn();
+}
+
 // return how many clock tick interrupts have occurred
 // since start.
 uint64

@@ -97,8 +97,9 @@ extern uint64 sys_unlink(void);
 extern uint64 sys_link(void);
 extern uint64 sys_mkdir(void);
 extern uint64 sys_close(void);
-// add the system call getreadcount to xv6
 extern uint64 sys_getreadcount(void); // for getreadcount
+extern uint64 sys_sigalarm(void); // for sigalarm
+extern uint64 sys_sigreturn(void); // for sigreturn
 
 // An array mapping syscall numbers from syscall.h
 // to the function that handles the system call.
@@ -124,8 +125,9 @@ static uint64 (*syscalls[])(void) = {
     [SYS_link] sys_link,
     [SYS_mkdir] sys_mkdir,
     [SYS_close] sys_close,
-    // add the system call getreadcount to xv6
     [SYS_getreadcount] sys_getreadcount, // for getreadcount
+    [SYS_sigalarm] sys_sigalarm, // for sigalarm
+    [SYS_sigreturn] sys_sigreturn, // for sigreturn
 };
 
 void syscall(void)
