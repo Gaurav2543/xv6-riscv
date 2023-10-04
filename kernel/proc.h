@@ -1,3 +1,11 @@
+#ifndef FCFS_SCHEDULER  // First Come First Serve Scheduler
+#define FCFS_SCHEDULER RR_SCHEDULER    // Default to Round Robin Scheduler
+#endif
+
+#ifndef MLFQ_SCHEDULER  // Multi Level Feedback Queue Scheduler
+#define MLFQ_SCHEDULER RR_SCHEDULER   // Default to Round Robin Scheduler
+#endif
+
 // Saved registers for kernel context switches.
 struct context {
   uint64 ra;
@@ -104,4 +112,24 @@ struct proc {
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
+
+  // FCFS ( First Come First Serve ) Scheduling
+  // Implement a policy that selects the process with the lowest creation time 
+  // (creation time refers to the tick number when the process was created). 
+  // The process will run until it no longer needs CPU time.
+  int ctime;                   // Creation time
+  int etime;                   // End time
+  int rtime;                   // Run time
+  int iotime;                  // IO time
+  int priority;                // Priority
+  int n_run;                   // Number of times the process was picked by the scheduler
+  int cur_queue;                   // Current queue
+  int wait_time;               // Wait time
+  int queue[5];                    // Number of ticks the process has received at each of the 5 queues
+  int ticks[5];                // Number of ticks the process has received at each of the 5 queues
+  int last_exec;               // Last execution time
+  // int last_exec_time;          // Last execution time
+  // int last_exec_time_q;        // Last execution time
+  // int last_exec_time_q1;       // Last execution time
+  // int last_exec_time_q2;       // Last execution time
 };
